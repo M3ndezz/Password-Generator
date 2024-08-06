@@ -1,3 +1,27 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+
+# Ignorar cache de bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar ambientes virtuais
+venv/
+env/
+.env/
+
+# Ignorar arquivos e diretórios específicos do IDE
+.idea/
+.vscode/
+
+# Ignorar arquivos de log e outros temporários
+*.log
+.DS_Store
+
+# Ignorar diretórios de distribuição e compilação
+build/
+dist/
+*.egg-info/
