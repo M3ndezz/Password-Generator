@@ -1,57 +1,46 @@
 import random
 import string
+from Choice_of_password import Configs_Password
 
 
 def gerar_senha(comprimento, usar_maiusculas, usar_minusculas, usar_numeros, usar_especiais):
-    """Gera uma senha aleatória com o comprimento e tipos de caracteres especificados.
 
-    Args:
-        comprimento (int): O comprimento da senha a ser gerada.
-        usar_maiusculas (bool): Incluir letras maiúsculas. A escolha do usuário.
-
-        usar_minusculas (bool): Incluir letras minúsculas. A escolha do usuário.
-
-        usar_numeros (bool): Incluir números. A escolha do usuário.
-
-        usar_especiais (bool): Incluir caracteres especiais. A escolha do usuário.
-
-    Returns:
-        str: Uma senha gerada aleatoriamente.
-    """
-    # Define os conjuntos de caracteres disponíveis
+    # Define os caracteres de acordo com a configuração escolhida
+    # Armazenar os caracteres
     caracteres = ''
+
     if usar_maiusculas:
+        # Acessa a biblioteca ascii e adiciona alfabeto na variavel (caracteres) em maiusculas
         caracteres += string.ascii_uppercase
+
     if usar_minusculas:
+        # Acessa a biblioteca ascii e adiciona o alfabeto na variavel (caracteres) em minusculas
         caracteres += string.ascii_lowercase
     if usar_numeros:
+
+        # Acessa a biblioteca ascii e adiciona numeros na variavel (caracteres)
         caracteres += string.digits
+
     if usar_especiais:
+        # Acessa a biblioteca ascii e adiciona pontuações na variavel (caracteres)
         caracteres += string.punctuation
 
     # Garantir que pelo menos um tipo de caractere seja selecionado
     if not caracteres:
         raise ValueError("Nenhum tipo de caractere foi selecionado para a geração da senha.")
 
-    # Gera a senha
-    senha = ''.join(random.choice(caracteres) for _ in range(comprimento))
+    # Gera a senha com uma String Vazia
+    # Será juntada com o .join de uma forma randomica com a biblioteca random.choice que escolherá a posição
+    # De cada Caractere armazenada no "caracteres" e começará um looping de uma variavel vazia "_"
+    # Com o numero escolhido no comprimento
+    senha = "".join(random.choice(caracteres) for _ in range(comprimento))
     return senha
 
 
-# Exemplo de uso
+# Teste
 if __name__ == "__main__":
-    comprimento = int(input("Digite o comprimento da senha: "))
-    usar_maiusculas = input("Deseja incluir letras maiúsculas? (s/n) ").lower() == 's'
-    if usar_maiusculas == "s":
-        usar_maiusculas = True
-    usar_minusculas = input("Deseja incluir letras minúsculas? (s/n) ").lower() == 's'
-    if usar_maiusculas == "s":
-        usar_minusculas = True
-    usar_numeros = input("Deseja incluir números? (s/n) ").lower() == 's'
-    if usar_numeros == "s":
-        usar_numeros = True
-    usar_especiais = input("Deseja incluir caracteres especiais? (s/n) ").lower() == 's'
-    if usar_especiais == "s":
-        usar_especiais = True
+    print("O comprimento da senha deve ser maior que 5, para maior segurança!")
+    comprimento, usar_maiusculas, usar_minusculas, usar_numeros, usar_especiais = Configs_Password.configs_password()
     senha = gerar_senha(comprimento, usar_maiusculas, usar_minusculas, usar_numeros, usar_especiais)
+
     print(f"Essa é a sua senha: {senha}")
