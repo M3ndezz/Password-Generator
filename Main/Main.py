@@ -30,17 +30,19 @@ def gerar_senha(comprimento, usar_maiusculas, usar_minusculas, usar_numeros, usa
         raise ValueError("Nenhum tipo de caractere foi selecionado para a geração da senha.")
 
     # Gera a senha com uma String Vazia
-    # Será juntada com o .join de uma forma randomica com a biblioteca random.choice que escolherá a posição
+    # Será juntada com o .join com a biblioteca random.choice que escolherá a posição
     # De cada Caractere armazenada no "caracteres" e começará um looping de uma variavel vazia "_"
     # Com o numero escolhido no comprimento
-    senha = "".join(random.choice(caracteres) for _ in range(comprimento))
-    return senha
+    criar_senha = "".join(random.choice(caracteres) for _ in range(comprimento))
+    return criar_senha
 
 
 # Teste
 if __name__ == "__main__":
     print("O comprimento da senha deve ser maior que 5, para maior segurança!")
-    comprimento, usar_maiusculas, usar_minusculas, usar_numeros, usar_especiais = Configs_Password.configs_password()
-    senha = gerar_senha(comprimento, usar_maiusculas, usar_minusculas, usar_numeros, usar_especiais)
+    comprimento_senha, usar_senha_maiusculas, usar_senha_minusculas, usar_senha_numeros, usar_senha_especiais =\
+        Configs_Password.configs_password()
+    senha = gerar_senha(comprimento_senha, usar_senha_maiusculas, usar_senha_minusculas, usar_senha_numeros,
+                        usar_senha_especiais)
 
     print(f"Essa é a sua senha: {senha}")
